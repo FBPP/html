@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+@total-width: 750;
+html{
+    font-size: 100vw/@total-width * 40;
+    background-color: #eff0f4;
+}
+.w{
+    width: 693/40rem;
+    margin: 0 auto;
+}
+.top-bar:extend(.w){
+    height: 175/40rem;
+    display: flex;
+    font-size: 30/40rem;
+    color: #333;
+    justify-content: space-between;
+    line-height: 175/40rem;
+
+    a{
+        font-size: 40/40rem;
+        color: #999;
+    }
+}
+.banner:extend(.w){
+    img{
+        width: 100%;
+    }
+}
+.menu:extend(.w){
+    display: flex;
+    height: 326/40rem;
+    justify-content: space-between;
+    align-content: space-evenly;
+    flex-flow: row wrap;
+    > a{
+        width: 326/40rem;
+        height: 106/40rem;
+        border-radius: 10/40rem;
+        color: #fff;
+        line-height: 106/40rem;
+        text-align: center;
+        font-size: 30/40rem;
+
+        > i{
+            margin-right: 10/40rem;
+        }
+    }
+    > a:nth-child(1){
+        background-color: #f97053;
+    }
+    > a:nth-child(2){
+        background-color: #c658ff;
+    }
+    > a:nth-child(3){
+        background-color: #ff3971;
+    }
+    > a:nth-child(4){
+        background-color: #1ca0fe;
+    }
+   
+}
+.course-list-wrapper:extend(.w){
+    height: 447/40rem;
+    // border: 1px solid red;
+
+    > .title{
+        display: flex;
+        justify-content: space-between;
+        > h2{
+            font-size: 33/40rem;
+            color: #24253d;
+            border-left: 2px solid #3a84ff;
+            padding-left: 18/40rem;
+        }
+        > .more{
+            font-size: 28/40rem;
+            color: #a6a7a9;
+        }
+        margin-bottom: 30/40rem;
+    }
+    > .course-list{
+        display: flex;
+        overflow: auto;
+        width: 720/40rem;
+        padding-top: 10/40rem;
+        padding-bottom: 10/40rem;
+        > .item{
+            width: 309/40rem;
+            height: 323/40rem;
+            padding-left: 20/40rem;
+            box-shadow: 0 0 5/40rem rgba(0, 0, 0, .3);
+            border-radius: 16/40rem;
+            margin-right: 22/40rem;
+            flex-shrink: 0;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            >.course{
+                > .cover{
+                    width: 286/40rem;
+                    height: 156/40rem;
+                    > img{
+                        width: 100%;
+                        vertical-align: top;
+                    }
+
+                }
+                > h3{
+                    margin-top: 20/40rem;
+                    text-align: center;
+                    width: 287/40rem;
+                    font-size: 28/40rem;
+                    color: #333;
+                }
+            }
+            > .author{
+                display: flex;
+                align-items: center;
+                > .avatar{
+                    width: 41/40rem;
+                    height: 41/40rem;
+                    margin-right: 17/40rem;
+                    img{
+                        width: 100%;
+                    }
+                }
+                > .nickname{
+                    color: #969393;
+                    font-size: 24/40rem;
+                }
+            }
+        }
+    }
+   
+
+}

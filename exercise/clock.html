@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <style>
+        .clock{
+            width: 477px;
+            height: 475px;
+            border-radius: 50%;
+            position: relative;
+            margin: 100px auto;
+            background-image: url("img/13/clock.jpg");
+            background-position: 2px 5px;
+        }
+        .hour-wrapper, 
+        .minutes-wrapper,
+        .seconds-wrapper{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto
+        }
+        .hour, 
+        .minutes, 
+        .seconds{
+            margin: 0 auto;
+        }
+        .hour-wrapper{
+            width: 60%;
+            height: 60%;
+            animation: run 2880s linear infinite;
+        }
+        
+        .hour{
+            width: 6px;
+            height: 50%;
+            background-color: #333;
+        }
+        .minutes-wrapper{
+            width: 70%;
+            height: 70%;
+            animation: run 240s linear infinite;
+        }
+        .minutes{
+            width: 4px;
+            height: 50%;
+            background-color: yellowgreen;
+        }
+        .seconds-wrapper{
+            width: 90%;
+            height: 90%;
+            animation: run 4s steps(60) infinite;
+        }
+        .seconds{
+            width: 2px;
+            height: 50%;
+            background-color: red;          
+        }
+        @keyframes run{
+            from{
+                transform: rotateZ(0deg);
+            }
+            to{
+                transform: rotateZ(1turn);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="hour-wrapper">
+            <div class="hour"></div>
+        </div>
+        <div class="minutes-wrapper">
+            <div class="minutes"></div>
+        </div>
+        <div class="seconds-wrapper">
+            <div class="seconds"></div>
+        </div>
+    </div>
+</body>
+</html>

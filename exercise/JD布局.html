@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD布局</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        body{
+            background-color: #F4F4F4;
+        }
+        header > .top-menu{
+            height: 32px;
+            background-color: #E3E4E5;
+        }
+        header > .head{
+            height: 140px;
+            background-color: #fff;
+        }
+        main, footer{
+            width: 1190px;
+        }
+        main{
+            height: 470px;
+            margin: 10px auto 30px auto;
+        }
+        main > *{
+            float: left;
+            height: 100%;
+        }
+        main > nav, main > section{
+            margin-right: 10px;
+        }
+        main > nav{
+            background-color: #fff;
+            width: 190px;
+        }
+        main > section{
+            width: 790px;
+        }
+        main > section > *{
+            height: 100%;
+            float: left;
+        }
+        main > section > .main-img{
+            width: 590px;
+            margin-right: 10px;
+            background-color: tomato;
+        }
+        main > section > .img-list{
+            width: 190px;
+        }
+        main > section > .img-list > div{
+            height: 150px;
+            background-color:#E2E1E8;
+        }
+        main > section > .img-list > div:not(:last-of-type){
+            margin-bottom: 10px;
+        }
+        main > aside{
+            width: 190px;
+            background-color: #fff;
+        }
+        footer{
+            height: 260px;
+            background-color: pink;
+            margin: 0px auto;
+        }
+    </style>
+</head>
+<body>
+       
+    <header>
+        <div class="top-menu"></div>
+        <div class="head"></div>
+    </header>
+    <main>
+        <nav></nav>
+        <section>
+            <div class="main-img"></div>
+            <div class="img-list">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </section>
+        <aside></aside>
+    </main>
+    <footer></footer>
+</body>
+</html>

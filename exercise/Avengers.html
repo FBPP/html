@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avengers</title>
+    <style>
+        html{
+            perspective: 800px;
+        }
+        .cube{
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            transform-style: preserve-3d;
+            animation: rotate 10s linear infinite;
+        }
+        .cube > div{
+            position: absolute;
+            opacity: .7;
+        }
+        .cube > .box1{
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .cube > .box2{
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .cube > .box3{
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .cube > .box4{
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        .cube > .box5{
+            transform: rotateX(180deg) translateZ(100px);
+        }
+        .cube > .box6{
+            transform: translateZ(100px);
+        }
+        @keyframes rotate{
+            from{
+                transform: rotateX(0) rotateY(0) rotateZ(0);
+            }
+            to{
+                transform: rotateY(1turn) rotateZ(1turn)  rotateX(1turn) ;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cube">
+        <div class="box1">
+            <img src="img/14/1.jpg">
+        </div>
+        <div class="box2">
+            <img src="img/14/2.jpg">
+        </div>
+        <div class="box3">
+            <img src="img/14/3.jpg">
+        </div>
+        <div class="box4">
+            <img src="img/14/4.jpg">
+        </div>
+        <div class="box5">
+            <img src="img/14/5.jpg">
+        </div>
+        <div class="box6">
+            <img src="img/14/6.jpg">
+        </div>
+    </div>
+</body>
+</html>

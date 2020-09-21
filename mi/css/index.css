@@ -1,0 +1,400 @@
+.topbar-wrapper{
+    background: #333;
+    height: 40px;
+    line-height: 40px;
+}
+.service, .topbar li{
+    float: left;
+}
+.user-info, .shop-cart{
+    float: right;
+}
+.topbar a{
+    color: #b0b0b0;
+    display: block;
+    font-size: 12px;
+}
+.service a:hover, .user-info a:hover{
+    color: #fff;
+}
+.topbar .line{
+    color: #424242;
+    font-size: 12px;
+    margin: -1px 7px 0px 7px;
+}
+.user-info{
+    margin-right: 25px;
+}
+.shop-cart a{
+    width: 120px;
+    text-align: center;
+    background-color: #424242;
+}
+.shop-cart i{
+    margin-right: 4px;
+}
+.shop-cart a:hover{
+    color:#FF6700;
+    background-color: #fff;
+}
+
+/*顶部导航栏下拉*/
+.download-app{
+    position: relative;
+}
+.download-app > .qr-code{
+    position: absolute;
+    left: -40px;
+    width: 126px;
+    /* height: 150px; */
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.3s;
+    line-height: 1px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+    z-index: 100;
+}
+.download-app > .qr-code > img{
+    width: 86px;
+    margin: 20px;
+}
+.download-app > .qr-code > span{
+    color: #333;
+    font-size: 14px;
+    margin-left: 22px;
+}
+.download-app::after{
+    content: '';
+    position: absolute;
+    width:0;
+    height:0;
+    border: 8px solid transparent;
+    border-top: none;
+    border-bottom-color: #fff;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; 
+    display: none;
+    z-index: 100;
+}
+.download-app:hover::after{
+    display: block;
+}
+.download-app:hover > .qr-code{
+    height: 150px;
+}
+
+/*头部logo, 导航栏 搜索框*/
+.header{
+    height: 100px;
+}
+.header > .logo{
+    float: left;
+    width: 55px;
+    height: 55px;
+    margin-top: 22px;
+    position: relative;
+    overflow: hidden;
+}
+.header > .logo > a{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background-color: #FF6700;
+    background-position: center;
+    left: 0px;
+    transition: left 0.3s;
+
+}
+.header > .logo > .mi{
+    background-image: url("../img/mi-logo.png");
+}
+.header > .logo > .home{
+    background-image: url("../img/mi-home.png");
+    left: -55px;
+}
+.header > .logo:hover > .mi{
+    left: 55px;
+}
+.header > .logo:hover > .home{
+    left: 0px;
+}
+.nav-warpper{
+    float: left;
+    margin-left: 7px;
+}
+.nav-warpper > .nav{
+    height: 100px;
+    line-height: 100px;
+    padding-left: 64px;
+}
+.nav-warpper > .nav > li > a {
+    font-size: 16px;
+    display: block;
+    margin-right: 20px;
+    color: #333;
+}
+.nav-warpper > .nav > li > a:hover{
+    color: #FF6700;
+}
+.nav > li{
+    float: left;
+}
+.nav > li:first-child > a{
+    visibility: hidden;
+}
+.header-wrapper{
+    position: relative;
+}
+.goods-list{
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.3s;
+    background-color: #fff;
+    box-shadow: 0 3px 0px rgba(0, 0, 0, 0.2);
+    border-top: 0px solid #E0E0E0;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 100px
+}
+.show-goods:hover ~ .goods-list, 
+.goods-list:hover{
+    height: 228px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid #E0E0E0;
+}
+
+.search-wrapper{
+    width: 296px;
+    height: 50px;
+    float: right;
+    margin-top: 25px;
+}
+.search-wrapper input, .search-wrapper button{
+    float: left;
+}
+.search-wrapper input{
+    box-sizing: border-box;
+    width: 245px;
+    height: 50px;
+    outline: none;
+    padding: 0 10px;
+    border: 1px solid #D5D5D5;
+    border-right: none;
+}
+.search-wrapper button{
+    background: #fff;
+    padding: 0px;
+    width: 51px;
+    height: 50px;
+    outline: none;
+    border: 1px solid #D5D5D5;
+    font-size: 18px;
+}
+.search-wrapper input:focus, 
+.search-wrapper input:focus + button{
+    border-color: #FF6700;
+}
+.search-wrapper button:hover{
+    background-color: #FF6700;
+    border: none;
+    color: #fff;
+}
+
+/* 中间部分 左侧导航条(实际上属于头部导航条的第一个li的一个子元素) 轮播图*/
+.left-nav-wrapper{
+    position: relative;
+}
+.left-nav{
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(105, 105, 101, .6);
+    width: 234px;
+    height: 420px;
+    padding: 20px 0;
+    left: -126px;
+}
+.left-nav > li > a{
+    display: block;
+    color: #fff;
+    line-height: 42px;
+    font-size: 14px;
+    padding-left: 29px;
+}
+.left-nav > li > a:hover{
+    background-color: #FF6700;
+}
+.left-nav > li > a > i{
+    float: right;
+    line-height: 42px;
+    margin-right: 24px;
+}
+
+.banner{
+    position: relative;
+    height: 460px;
+}
+.banner > .img-list img{
+    width: 100%;
+    vertical-align: bottom;
+}
+.banner > .img-list > li{
+    position: absolute;
+}
+.banner > .img-list > li:nth-child(1){
+    z-index: 1;
+}
+.pointer{
+    position: absolute;
+    z-index: 1;
+    right: 27px;
+    bottom: 26px;
+}
+.pointer a{
+    float: left;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, .4);
+    background-color: rgba(0, 0, 0, .4);
+    margin: 0 4px;
+}
+.pointer a:hover{
+    border: 2px solid rgba(0, 0, 0, .4);
+    background-color: rgba(255, 255, 255, .4);
+}
+.pointer a:nth-child(1){
+    border: 2px solid rgba(0, 0, 0, .4);
+    background-color: rgba(255, 255, 255, .4);
+}
+.prev-next a{
+    width: 41px;
+    height: 69px;
+    background-image: url("../img/icon-slides.png");
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    z-index: 2;
+}
+.prev-next > .prev{
+    left: 234px;
+    background-position: -83px 0;
+}
+.prev-next > .next{
+    right: 0;
+    background-position: -125px 0;
+}
+.prev-next > .prev:hover{
+    background-position: 0;
+}
+.prev-next > .next:hover{
+    background-position: -42px;
+}
+.right-tool-bar{
+    position: fixed;
+    z-index: 1;
+    right: 0px;
+    top: 305px;
+}
+.right-tool-bar a{
+    display: block;
+    width: 80px;
+    height: 91px;
+    background: #fff;
+    border: 1px solid #F5F5F5;
+    border-bottom: none;
+    color: #9C9C9C;
+    text-align: center;
+}
+.right-tool-bar a:hover{
+    color: #FF6700;
+}
+.right-tool-bar > li:last-child > a{
+    border-bottom: 1px solid #F5F5F5;
+}
+.right-tool-bar a > i{
+    font-size: 30px;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 14px;
+}
+.product{
+    margin-top: 15px;
+}
+.product li,
+.product > .shortcut,
+.product > .img-list{
+    float: left;
+}
+.product > .shortcut{
+    width: 228px;
+    height: 168px;
+    background-color: #5F5750;
+    margin-right: 14px;
+    padding-top: 2px;
+    padding-left: 6px;
+}
+.product > .shortcut a{
+    display: block;
+    width: 76px;
+    height: 84px;
+    color: #CECCCA;
+    text-align: center;
+    font-size: 12px;
+    overflow: hidden;
+}
+.product > .shortcut a:hover{
+    color: #fff; 
+}
+.product > .shortcut a > i{
+    display: block;
+    font-size: 20px;
+    margin-top: 18px;
+    margin-bottom: 6px;
+}
+.product > .shortcut > li{
+    position: relative;
+}
+.product > .shortcut > li::before{
+    content: '';
+    width: 64px;
+    height: 1px;
+    background-color: #665E57;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.product > .shortcut > li::after{
+    content: '';
+    width: 1px;
+    height: 71px;
+    background-color: #665E57;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.product > .img-list a{
+    display: block;
+    width: 316px;
+}
+.product > .img-list img{
+    width: 100%;
+    vertical-align: top;
+}
+
+.product> .img-list > li:not(:last-child){
+    margin-right: 15px;
+} 
+.product > .img-list img{
+    width: 100%;
+    vertical-align: top;
+}
