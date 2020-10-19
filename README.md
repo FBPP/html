@@ -2156,7 +2156,7 @@ animation-name: name;
 				可选值:
 					nowrap 默认值 元素不会自动换行
 					wrap 元素沿着辅轴的方向自动换行
-					wrap-reverse 元素沿着辅轴反方向自动换行
+					wrap-reverse 元素沿着辅轴反方向自动换行 并且第一行在辅轴末尾
 			flex-flow flex-wrap 和 flex-direction的简写属性
 				flex-flow: row wrap;
 
