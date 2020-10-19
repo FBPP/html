@@ -205,6 +205,7 @@ span显示在同一行	大小由内容决定
 <nav></nav>
 <section></section>
 <aside></aside>
+<article></article>
 <footer></footer>
 ```
 
@@ -229,12 +230,11 @@ span显示在同一行	大小由内容决定
 
 定义列表
 <dl>
-    <dt>
-        <dd></dd>
-    </dt>
-	<dt>
-        <dd></dd>
-	</dt>
+    <dt></dt>
+    <dd></dd>
+    
+	<dt></dt>
+    <dd></dd>
 </dl>
 
 列表之间可以互相嵌套
@@ -321,7 +321,9 @@ href 可以是
 
 ​		内部链接 ``` href = "XXX.html"```
 
-​		空链接 ``` href = "#" ```
+​		去顶部 ```href = "#"```
+
+​		空链接 ``` href = "##" ```
 
 ​		下载链接 ```href = "XXX.zip" ```
 
@@ -386,10 +388,6 @@ a是行内元素 可以嵌套除他自身外的任何元素
 </video>
 ```
 
-
-
-
-
 #### 表格
 
 ```html
@@ -444,6 +442,17 @@ input
 <input type="checkbox" name="hello" value="a"> 多选框
 <input type="checkbox" name="hello" value="b">
 <input type="checkbox" name="hello" value="c" checked>
+<lable for="">XXX</lable> 使用for指定input元素 点击文字也会选中该元素
+
+<input type="email">
+<input type="url">
+<input type="number">
+<input type="datetime-local">
+<input type="month">
+<input type="date">
+<input type="week">
+<input type="color">
+<input type="range">
 ```
 
  select
@@ -453,16 +462,20 @@ input
     <option value="a">选项1</option>
     <option selected value="b">选项1</option>
     <option value="c">选项1</option>
+    <optgroup lable="组标题">
+        <option></option>
+    </optgroup>
 </select>
 ```
 
 input属性
 
 ```html
-autocomplete="off" 关闭自动补全
+autocomplete="off" 关闭自动补全 和name属性配合使用 记录相同name属性 相同浏览器 提交成功的属性
 readonly 只读
-disabled 禁用
+disabled 禁用 
 autofocus 自动获取焦点
+required 非空验证
 ```
 
 
@@ -540,8 +553,6 @@ id选择器
 }
 
 ```
-
-
 
 #### 复合选择器
 
@@ -646,6 +657,14 @@ div ~ span {
     
 </p>
 
+[属性名~=属性值] 选择含有指定属性名和包含独立单词为属性值的元素
+[title ~= abc] {
+
+}
+<p title="a abc a">
+    
+</p>
+
 [属性名^=属性值] 选择含有指定属性名和以指定属性值开头的元素
 [title ^= abc] {
 
@@ -679,13 +698,14 @@ div ~ span {
 	伪类一般情况下用:开头
 	:first-child 第一个子元素
 	:last-child 最后一个子元素
-	:nth-child() 第n(n从1开始)个子元素 写在括号里面的是
+	:nth-child() 写在括号里面的是
 		    具体数字 表示第几
-			n 表示选中第n到正无穷
+			n 表示整数
 			2n 表示选中偶数位的元素
 			2n + 1 表示选中奇数位的元素
 			odd 选中奇数位的元素
 			even 选中偶数位的元素
+	:nth-last-child() 倒序
 <style>
     ul > li :first-child{
         
@@ -700,7 +720,8 @@ div ~ span {
 
 	:first-of-type
 	:last-of-type
-	:nth-of-type() 这几个和上面的child类似 不过是在同类型间选择
+	:nth-of-type() 
+	:nth-last-of-type() 这几个和上面的child类似 不过是在同类型间选择
 <style>
     ul > li : first-of-type{
         
@@ -726,11 +747,14 @@ ul>li:not(:nth-of-type(3)) {
     <li></li> 第三个样式不会受到影响
 </ul>
 
+	:only-child 唯一的
+	
+	:empty 空内容
 ```
 
 \<a>\</a>标签的特殊伪类
 
-```html
+```css
 正常链接(未被访问过的链接)
 a:link{
 
@@ -740,6 +764,9 @@ a:link{
 a:visited{
 
 }
+/*
+	访问后的状态只能改变字体颜色
+*/
 ```
 
 使用于所有的标签的伪类
@@ -785,18 +812,18 @@ div::after{
 }
 
 ::before和::after的元素不存在于html标签的文本中 不可以被选中
+伪元素默认是行内显示模式
 ```
 
 #### 继承
 
-为一个元素设置的样式也会应用到它的后代
-
-有些样式可以被继承 有些不能被继承 一般背景相关的和布局相关的就不能被继承
+文本样式 会应用到它的后代
 
 ```html
 p{
 	color: green;  会被span继承
 	background-color: orange 不会被span继承
+	text-align: center; 会被span继承
 }
 
 <p>
@@ -931,6 +958,18 @@ hsla值
 ​			默认自左向右排列 如果一行中不能容下这些行内元素 会换到第二行继续自左向右排列
 
 ​			默认的宽度和高度都会被子元素撑开 
+
+​			盒子之间有一个或多个空格时 会出现一个默认等宽的间距
+
+​	行内块
+
+​			img 表单元素是行内快元素
+
+​			行内快元素不独占一行 默认沿基线对齐
+
+​			可以设置宽高 宽高默认由内容决定 
+
+​			盒子之间有一个或多个空格时 会出现一个默认等宽的间距
 
 #### 盒子模型
 
@@ -1068,6 +1107,14 @@ margin
 	如果margin-left 和 margin-right 都设置为auto 且width不是auto 这会调整这两个margin值相同
 	如果没有设置auto的值总和大于父元素内容区的宽度 则设置为auto的值 或者margin-right(没有设置为auto的值) 会自动调整为负数
 */
+/*
+	行内块元素 横向布局的问题
+		由于行内块 默认是基线对齐 给行内快设置垂直方向的内外边距时会影响水平方向的布局
+*/
+/*
+	行内元素 横向布局问题
+		由于行内元素沿着基线对齐 垂直方向上的内外边距不起作用
+*/
 ```
 
 #### 垂直方向布局
@@ -1177,7 +1224,10 @@ div{
 	第一个值 水平偏移量 正值向右移动 负值向左移动
 	第二个值 垂直偏移量 正值向下移动 负值向上移动
 	第三个值 阴影模糊半径
-	第四个值 阴影颜色
+	第四个值 扩展(可选)
+	第五个值 阴影颜色
+
+	向内阴影 inset
 */
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
 ```
@@ -1198,8 +1248,8 @@ div{
 	border-radius: 10px
 	border-radius: 10px / 20px;
 /*
-	border-left-top-radius border-right-top-radius
-	border-left-bottom-radius border-right-bottom-radius
+	border-top-left-radius border-top-right-radius
+	border-bottom-left-radius border-bottom-right-radius
 		可选值:
 			一个值 设置圆半径
 			两个值 设置椭圆 水平半径 垂直半径
@@ -1238,6 +1288,9 @@ div{
 		综上 元素脱离文档流 	就不分快元素和行内元素了
 */
 
+/*
+	当浮动元素溢出其父元素时 会影响后面的盒子中的元素
+*/
 ```
 
 #### BFC(Block Formatting Context) 块级格式化环境
@@ -1278,7 +1331,6 @@ div{
 		float不为none
 		将元素设置为行内块元素inline-block
 		overflow 设置为 非visible
-		
 */
 
 ```
@@ -1287,7 +1339,7 @@ div{
 
 ```css
 /*
-	如果不希望某个元素因为其他元素的浮动改变位置 可以通过clear来清除浮动元素对当前元素的影响
+	如果不希望某个元素因为其他元素的浮动改变位置 可以通过clear来清除浮动对当前元素的影响
 	clear的原理是为元素设置了margin(但是不会显示出来)
 	可选值:
 		left 清除左册浮动元素对当前元素的硬性
@@ -1433,6 +1485,14 @@ box::before{
 	发生过度约束时 和水平布局类似
 	
 */
+/*
+	水平垂直居中
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+*/
 ```
 
 #### 定位的层级
@@ -1444,6 +1504,11 @@ box::before{
 	层级越高的元素优先显示
 	如果元素的层级一样 则优先显示靠下的元素
 	祖先元素的层级再高也不会盖住后代元素
+	z-index < 0 层级低于标准流
+	如果 a 和 b 的层级不为默认 且 a的层级 小于 b的层级
+		则a的子元素son_a无论层级有多高 都无法超过 b以及son_b
+	如果 a 和 b 的层级是默认
+		则设置 son_a 的层级 可以超过 b 和 son_b
 */
 ```
 
@@ -1466,6 +1531,11 @@ box::before{
 	注意 加载速度
 		版权
 		浏览器不支持格式 多用src备用多个格式 类似video audio
+
+	font-style
+		可选值
+			normal 正常
+			italic 倾斜
 */
 ```
 
@@ -1531,7 +1601,25 @@ iconfont
 	行高会在字体框的上下平均分配(可以将行高设置和元素的高度相等的值 文字会在元素中垂直居中, 如果元素的高度未指定 则默认为auto被行高撑开)
 	通过行高可以设置多行文本的间距(line-height - font-size)
 */
+
+/*
+	文本的4条线:
+		顶线
+		中线
+		基线
+		底线
+*/
 ```
+
+#### 复合属性 
+
+```css
+/*
+	如果复合属性和单属性同时存在时 把复合属性写在单属性的前面
+*/
+```
+
+
 
 #### font简写属性
 
@@ -1548,7 +1636,8 @@ font: bold italic 50px/1 Microsoft Yahei, serif;
 
 ```css
 /*
-	text-align 水平对齐
+	text-align 水平居中
+		也可以让 行内元素 水平居中
 		可选值:
 			left 左侧对齐
 			right 右侧对齐
@@ -1591,6 +1680,31 @@ img{
 	white-space: normal;
 	overflow: hidden;
 	text-overflow: ellipsis;
+/*
+	word-break: break-all 强制换行
+*/
+/*
+	文本的溢出样式
+	overflow: hidden
+	text-overflow
+		ellipsis
+	
+*/
+/*
+	text-shadow 文字阴影
+*/
+/*
+	文字边框
+		可选值:
+			边框粗细 颜色
+		-webkit-text-stroke: 1px gray;
+*/
+
+/*
+	文字裁剪
+        -webkit-background-clip: text;
+        color: transparent;
+*/  
 ```
 
 #### 背景图片
@@ -1602,6 +1716,8 @@ img{
 		如果背景图片大小小于元素 背景图片会自动在元素中平铺将元素铺满
 		如果背景图片大于元素 会一部分背景无法完全显示
 		如果背景图片和元素大小一样大 会直接正常显示
+		背景图如果设置为 no-repeat 则默认延伸到padding区
+		背景图如果设置为 repeat 则默认延伸到border区
 */
 	background-image: url("./img/xxx.png");
 /*
@@ -1655,9 +1771,14 @@ img{
 			fixed 背景图片会固定在页面中 background-position相对于视口定位
 */
 /*
-	background 简写属性 
+	background 简写属性
 		注意: background-size必须在background-position后并用/隔开
 		background-origin必须写在background-clip前面
+*/
+/*
+	多重背景 background: url(xxx),
+					    url(xxx);
+		前面的url会压住后面的url
 */
 ```
 
@@ -1724,6 +1845,7 @@ img{
 	默认情况下径向渐变的形状根据元素的形状来计算的
 	正方形 圆形
 	长方形 椭圆
+	默认半径是 圆心 到 最远角 的距离
 	语法:
 		radial-gradient(大小 at 位置, 颜色 位置, 颜色 位置, ...);
  			大小:
@@ -1739,6 +1861,14 @@ img{
 				xxpx xxpx
 */
 ```
+
+```css
+/*
+	重复径向渐变 repeating-radial-gradient
+*/
+```
+
+
 
 #### table样式
 
@@ -1809,6 +1939,11 @@ img{
 /*
 	transition简写属性 transition-duration 在 transition-delay 前面
 */
+/*
+	多个过渡用 , 隔开
+*/
+	transition: width 1s linear .5s,
+				height 2s ease-in;
 ```
 
 #### 动画animation
@@ -1836,7 +1971,7 @@ img{
 animation-name: name;
 /*
 	animation-duration 动画执行时间 
-	animation-timing-function 动画的时许函数
+	animation-timing-function 动画的时序函数
 	animation-delay 延时
 
 	animation-iteration-count 动画执行次数
@@ -1847,7 +1982,7 @@ animation-name: name;
 	animation-direction 动画运行的方向
 		可选值:
 			normal 默认值 从 from 向 to 运动
-			reverse 从 to 想 from 运动
+			reverse 从 to 向 from 运动
 			alternate 从 from 向 to 运动 交替执行
 			alternate-reverse 从 to 向 from 运动 交替执行
 
@@ -1881,6 +2016,9 @@ animation-name: name;
         margin-top: 20px
     }
 }
+/*
+	animation 动画库
+*/
 ```
 
 #### 变形
@@ -1924,6 +2062,15 @@ animation-name: name;
 
 	z轴默认垂直于屏幕 正向朝着屏幕外的方向
 		translateZ() 调整元素在Z轴的位置 
+*/
+/*
+	transform: translate(x, y);
+*/
+/*
+	transform-style
+	设置元素的子元素位于3d空间中还是平面
+		flat 平面
+		preserve-3d 3d空间
 */
 ```
 
@@ -1970,6 +2117,10 @@ animation-name: name;
 /*
 	transform-origin
 			center 默认值
+		可选值
+			水平 垂直 
+			水平 left center right 数值
+			垂直 top center bottom 数值
 */
 ```
 
@@ -1996,8 +2147,8 @@ animation-name: name;
 				可选值: 
 					row 默认值 弹性元素在容器中水平排列(左向右)
 					row-reverse 弹性元素在容器中反向水平排列(从右向左)
-					colum 弹性元素纵向排列(自上向下)
-					colum-reverse 弹性元素纵向反向排列(自下向上)
+					column 弹性元素纵向排列(自上向下)
+					column-reverse 弹性元素纵向反向排列(自下向上)
 
 				主轴: 弹性元素的排列方向称为主轴
 				侧轴: 与主轴方向垂直的称为侧轴
@@ -2022,12 +2173,13 @@ animation-name: name;
 				可选值:
 					stretch 默认值 将长度设置为相同的值
 					flex-start 沿着辅轴起边对齐
-					flex-end 沿着辅轴中边对齐
+					flex-end 沿着辅轴终边对齐
 					center 居中对齐
 					baseline 基线对齐
 			align-content 如何分配辅轴上的空白
 				可选值: 和justfy-content一样
 
+			注意: 当 align-items 和 align-content 同时存在时 align-items 失效
 
 		弹性元素
 			弹性容器的子元素是弹性元素(弹性项)
@@ -2058,15 +2210,39 @@ animation-name: name;
 */
 ```
 
+#### 像素比 
 
+```css
+/*
+	像素比 = 物理像素 / 逻辑像素
+*/
+```
 
 #### vw
 
 ```css
-​```
+/*
+	视口 即 显示窗口
+		手机出厂时默认的视口大小都是 980px
+		苹果公司提出将网页视口大小设置成和屏幕的大小一样大
+			<meta name="viewport" content="width=device-width", initial-scale="1.0">
 	1vw = 1% view port width
 	100vw = view port width
-​```
+
+	x_px / width_px = 1vw / 100vw
+	x_px = width_px (1 / 100)vw
+	1_px = 1vw / x
+	
+	由于font-size在一些浏览器里如果<12px 会设置为12px 
+		则需要把font-size扩大40倍 在使用rem时 /40
+*/
+html {
+	font-size: (1 / x) * 40vw;
+}
+div {
+    width: 20/40rem;
+}
+
 ```
 
 #### 媒体查询
@@ -2105,9 +2281,69 @@ animation-name: name;
 			> 992 中屏幕
 			> 1200 大屏幕
 */
-@media only screen and (min-width: 500px) and (max-width: 700px) {
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
 }
+/*
+	@media依然是css语句 遵循css的 继承 和 覆盖 特性
+*/
+/*
+	@media 可以写在 css 选择器里
+	@media 可以写在 link标签 里 为指定特定的css设置media属性
+		<link rel="stylesheet" href="xx.css" media="only screen and (min-width: 768px) and (max-width: 1199px)">
+*/
+/*
+	(orientation: portrait) 横屏
+	(orientation: landscape) 竖屏
+*/
 ```
 
+#### 网页的版心和通栏
 
+```css
+/*
+	pc端的版心是固定宽高水平居中的盒子 用来显示网页内容
+	通栏是无固定宽度 自适应的盒子
+*/
+```
 
+#### 文字隐藏的方式
+
+```css
+/*
+	font-size: 0px;
+
+	让子元素溢出父元素 设置父元素 overflow: hidden;	
+*/
+```
+
+#### 透明
+
+```css
+/*
+	透明度
+		元素中的所有内容都透明
+*/
+opacity: .5
+```
+
+#### favicon.ico
+
+```html
+<!--
+	放置在根目录里
+	网络搜索 "ico转换" 搜索转换工具
+-->
+<link ref="shortcut icon" href="favicon.ico" />
+
+```
+
+#### 浏览器内核
+
+```css
+浏览器        内核              前缀
+chrome       webkit(blink)    -webkit-
+safari       webkit           -webkit-
+firefox  	 gecko			  -moz-
+ie           trident          -ms-
+opera        presto           -0-
+```
