@@ -1438,8 +1438,8 @@ box::before{
 			<div><span><em></em></span></div> em的包含块是div而不是span 因为span不是块元素
 		绝对定位下:
 			包含块是离它最近的开启了定位的祖先元素
-				如果所有的祖先元素都没有开启定位则根元素就是它的包含块
-		html(根元素, 初始包含块)
+				如果所有的祖先元素都没有开启定位则相对于初始包含块定位
+				初始包含块 由用户代理(浏览器)创建 是一个和视口等宽高的透明矩形 是浏览器渲染页面的必要条件
 */
 ```
 
@@ -1941,6 +1941,7 @@ img{
 */
 /*
 	多个过渡用 , 隔开
+	如果后面的过渡属性和前面的过渡属性有重复 则后面会覆盖前面的
 */
 	transition: width 1s linear .5s,
 				height 2s ease-in;
@@ -2128,7 +2129,28 @@ animation-name: name;
 
 #### less
 
-看文档
+```css
+/*
+	变量名 @name 
+	属性名 @{attribute}
+	选择器 .@{class} 
+		  @{.class}
+	less 使用变量 选择当前大括号的最后一个
+		如果当前大括号没有 则在上一层大括号寻找
+
+	混合 
+		定义混合
+		.mixinName(@arg1, @arg2: 100px) {
+		}
+		调用混合
+		.mixinName(@arg1: 100px);
+		
+		引入外部文件
+		@import "url";
+*/
+```
+
+
 
 #### flex
 
@@ -2347,3 +2369,152 @@ firefox  	 gecko			  -moz-
 ie           trident          -ms-
 opera        presto           -0-
 ```
+
+#### 布局技巧
+
+```css
+/*
+	左侧固定右侧自适应 
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.right {
+				float: left;
+				width: 100%;
+				height: 600px;
+				background-color: green;
+				padding-left: 200px;
+				box-sizing: border-box;
+			}
+			.left {
+				float: left;
+				width: 200px;
+				height: 600px;
+				margin-left: -100%;
+				background-color: red;
+			}
+		</style>
+
+        <div class="right">
+            foo bar
+        </div>
+        <div class="left"></div>
+
+	两侧固定中间自适应
+		<style>
+			.center {
+				float: left;
+				box-sizing: border-box;
+				width: 100%;
+				height: 600px;
+				padding: 0 200px;
+				background-color: green;
+			}
+			.left,
+			.right {
+				float: left;
+				width: 200px;
+				height: 600px;
+				background-color: red;
+			}
+			.left {
+				margin-left: -100%;
+			}
+			.right {
+				margin-left: -200px;
+			}
+		</style>
+        <body>
+            <div class="center">
+                foo bar
+            </div>
+            <div class="left"></div>
+            <div class="right"></div>
+        </body>
+
+	伪等高布局
+        <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                    overflow: hidden;
+                }
+                .clearfix::after{
+                    content: '';
+                    display: block;
+                    clear: both;
+                }
+                .left, .right {
+                    padding-bottom: 10000px;
+                    margin-bottom: -10000px;
+                }
+                .left {
+                    float: left;
+                    background-color: red;
+                }
+                .right {
+                    float: left;
+                    background-color: blue;
+                }
+    	</style>
+		<div class="outer .clearfix">
+            <ul class="left">
+                <li>aaa</li>
+            </ul>
+            <ul class="right">
+                <li>bbb</li>
+                <li>bbb</li>
+            </ul>
+    	</div>
+
+	隐藏最右面元素的margin-right 防止该元素换行
+		<style>
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            .clearfix::after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+            .outer {
+                width: 1100px;
+                overflow: hidden;
+                border: 4px solid blue;
+            }
+            .hide {
+                width: 1210px;
+            }
+            .hide > li {
+                float: left;
+                width: 300px;
+                height: 100px;
+                margin-right: 100px;
+                margin-bottom: 100px;
+                background-color: red;
+            }
+    	</style>
+		<div class="outer">
+            <ul class="hide clearfix">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+    	</div>
+*/
+```
+
+
+
